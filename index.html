@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric R - Exercise 1 Javascript</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="wrapper">
+
+
+
+    <div id="content">
+        <h1>Date, Time and Week. Updating every second via Javascript</h1>
+        <div id="datetimeweek"></div>
+        <br>
+        <p>Type in year, it will check to see if its a leapyear. And IF 1st Janyary is a sunday:</p>
+        <form action="#">
+            <input type="text" id="inputyear">
+            <input type="button" value="Check the year" onclick="checkIfLeapYear();"/>
+        </form>
+        <p id="resultofcheck"></p>
+        <p id="resultOfFirstJanCheck"></p>
+        <br>
+    </div>
+
+<div id="guessgame">
+    <p>Guessing game. Guess a number from 1 to 10:</p>
+    <form action="#">
+        <input type="text" id="inputNrGuess">
+        <input type="button" value="Check the year" onclick="checkGuessedNr();"/>
+    </form>
+    <p id="resultofguess"></p>
+    <br>
+</div>
+
+<div id="daystilxmas">
+    <p>Days until X-Mas (the 24th in sweden):</p>
+    <p id="showdaystoxmas"></p>
+    <br>
+</div>
+
+</div>
+
+</body>
+
+<script src="/js/looks.js"></script>
+<script src="/js/datetimeweek.js"></script>
+<script type="text/javascript">
+    daysTilXmasNow();
+  </script>
+
+
+
+</html>
