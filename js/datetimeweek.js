@@ -2,7 +2,7 @@
   * Eric R javascrip looks
 */
 var myContent = document.getElementById("wrapper");
-myContent.style.backgroundColor = "darkblue";
+myContent.style.backgroundColor = "darkgray";
 
 
 /* update time every second */
@@ -91,6 +91,17 @@ var one_day=1000*60*60*24;
 
 
 
+function reverseUserInput() {
+  var userinputStr = document.getElementById("inputNrAndLetters").value;
+
+  var newReversedString = "";
+
+    for (var ind = userinputStr.length - 1; ind >= 0; ind--) {
+      newReversedString += userinputStr[ind];
+    }
+
+  document.getElementById('reversedResulOfInput').innerHTML = "Heres input in reverse order: " + newReversedString;
+}
 
 
 

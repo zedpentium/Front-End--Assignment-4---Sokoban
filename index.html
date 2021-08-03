@@ -9,14 +9,19 @@
 </head>
 <body>
     <div id="wrapper">
-
+        <h1>Eric 1st javascript exercise</h1>
 
 
     <div id="content">
-        <h1>Date, Time and Week. Updating every second via Javascript</h1>
+        <br>
+    <div id="currectTimeDay">
+        <p>Date, Time and Week. Updating every second via Javascript</p>
         <div id="datetimeweek"></div>
         <br>
-        <p>Type in year, it will check to see if its a leapyear. And IF 1st Janyary is a sunday:</p>
+    </div>
+
+    <div id="yearcheckleapand1stjan">
+        <p>Type in year, it will check to see if its a leapyear. And IF 1st January is a sunday:</p>
         <form action="#">
             <input type="text" id="inputyear">
             <input type="button" value="Check the year" onclick="checkIfLeapYear();"/>
@@ -26,15 +31,17 @@
         <br>
     </div>
 
+
 <div id="guessgame">
     <p>Guessing game. Guess a number from 1 to 10:</p>
     <form action="#">
         <input type="text" id="inputNrGuess">
-        <input type="button" value="Check the year" onclick="checkGuessedNr();"/>
+        <input type="button" value="Check it" onclick="checkGuessedNr();"/>
     </form>
     <p id="resultofguess"></p>
     <br>
 </div>
+
 
 <div id="daystilxmas">
     <p>Days until X-Mas (the 24th in sweden):</p>
@@ -42,7 +49,26 @@
     <br>
 </div>
 
+
+<div id="stringmanipul">
+    <p>Input some letters or/and numbers, click butten and it will be shown reversed::</p>
+    <form action="#">
+        <input type="text" id="inputNrAndLetters">
+        <input type="button" value="Submit" onclick="reverseUserInput();"/>
+    </form>
+    <p id="reversedResulOfInput"></p>
+    <br>
 </div>
+
+
+
+
+
+
+
+</div> <!-- content end -->
+
+</div> <!-- wrapper end -->
 
 </body>
 
