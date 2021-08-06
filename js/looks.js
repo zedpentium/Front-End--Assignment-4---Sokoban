@@ -4,7 +4,6 @@
 
 document.body.style.backgroundColor = "lightgray";
 
-
 var myContent = document.getElementById("content");
 myContent.style.backgroundColor = "black";
 
