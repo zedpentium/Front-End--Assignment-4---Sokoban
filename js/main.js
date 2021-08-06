@@ -281,7 +281,7 @@ setInterval(function () {
   //document.getElementById("elapsedTime").innerHTML = counterWatch++ + " sekund(er)";
 
 
-if (checkDivIDClassIfMmatch("x17y5", objectBoxInGoal)) { // && checkDivIDClassIfMmatch("x16y5", objectBoxInGoal) && checkDivIDClassIfMmatch("x16y4", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y6", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y5", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y4", objectBoxInGoal)) {
+if (checkDivIDClassIfMmatch("x17y5", objectBoxInGoal) && checkDivIDClassIfMmatch("x16y5", objectBoxInGoal) && checkDivIDClassIfMmatch("x16y4", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y6", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y5", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y4", objectBoxInGoal)) {
   infoTile.innerHTML = "Congratulations! Your got 6 boxes to the goal-storage! ;) <br><button onClick='window.location.href=window.location.href'>Play Again?</button>";
   changeGoalBoxesColor("x16y6", "blue");
   changeGoalBoxesColor("x16y5", "blue");
