@@ -4,77 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric R - Exercise 1 Javascript</title>
+    <title>Eric R Javascript Sokoban</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <div id="wrapper">
-        <h1>Eric 1st javascript exercise</h1>
 
+<div id="wrapper">
 
-    <div id="content">
-        <br>
-    <div id="currectTimeDay">
-        <p>Date, Time and Week. Updating every second via Javascript</p>
-        <div id="datetimeweek"></div>
-        <br>
-    </div>
-
-    <div id="yearcheckleapand1stjan">
-        <p>Type in year, it will check to see if its a leapyear. And IF 1st January is a sunday:</p>
-        <form action="#">
-            <input type="text" id="inputyear">
-            <input type="button" value="Check the year" onclick="checkIfLeapYear();"/>
-        </form>
-        <p id="resultofcheck"></p>
-        <p id="resultOfFirstJanCheck"></p>
-        <br>
-    </div>
-
-
-<div id="guessgame">
-    <p>Guessing game. Guess a number from 1 to 10:</p>
-    <form action="#">
-        <input type="text" id="inputNrGuess">
-        <input type="button" value="Check it" onclick="checkGuessedNr();"/>
-    </form>
-    <p id="resultofguess"></p>
-    <br>
+<div id="infoContainer">
+<h3>Gleeeetings! Infadels! to BoxU-man(Sokoban)<br>Time to push some boxiss! ;)<br>Written by Eric Rönnhult</h1>
+<!-- <button onclick="testalite();">Testknapp</button> -->
+<div id="testinfo"></div>
+<div>Player Position</div>
+<div id="playerPosition"></div>
+<div><br>Elapsed Time:</div>
+<div id="elapsedTime"></div>
 </div>
 
 
-<div id="daystilxmas">
-    <p>Days until X-Mas (the 24th in sweden):</p>
-    <p id="showdaystoxmas"></p>
-    <br>
+<div id="mapWrap"></div>
+
+
+
+
+
 </div>
-
-
-<div id="stringmanipul">
-    <p>Input some letters or/and numbers, click butten and it will be shown reversed::</p>
-    <form action="#">
-        <input type="text" id="inputNrAndLetters">
-        <input type="button" value="Submit" onclick="reverseUserInput();"/>
-    </form>
-    <p id="reversedResulOfInput"></p>
-    <br>
-</div>
-
-
-
-
-</div> <!-- content end -->
-
-</div> <!-- wrapper end -->
+    <script src="/js/SokobanBase.js"></script>
+    <script src="/js/main.js"></script>
+    <script type="text/javascript">drawUpMap()</script>
 
 </body>
-
-<script src="/js/looks.js"></script>
-<script src="/js/datetimeweek.js"></script>
-<script type="text/javascript">
-    daysTilXmasNow();
-  </script>
-
-
-
 </html>

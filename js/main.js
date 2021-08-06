@@ -6,7 +6,6 @@
 var idCounter = 0;
 var myWrapper = document.getElementById("wrapper").style.backgroundColor = "green";
 
-
 var myMapWrapper = document.getElementById("mapWrap");
 
 var playerPosX = 0;
@@ -25,9 +24,10 @@ var objectGoal = "block tile-goal";
 var objectSpace = "block tile-space";
 
 var ShowplayerPosition = document.getElementById("playerPosition");
+var infoTile = "";
 var getElementByClass = document.getElementsByClassName("playerPosition");
 
-function checkElementIdIfClass(elementDivId, elementClassesVariable) {
+function checkElementClass(elementDivId, elementClassesVariable) {
   if (elementDivId == elementClassesVariable) {
     return true;
   } else {
@@ -40,6 +40,9 @@ function injectXYToIDs(theX, theY) {
 }
 
 function drawUpMap() {
+  reset() // make sure stopwatch is reset
+  start() // startign stopwatch
+
   var indexX = 0;
   var indexY = 0;
   var indexYReverse = tileMap01.height - 1;
@@ -136,14 +139,14 @@ function isMoveOk(moveX, moveY) {
 
   var wantToMoveXY = injectXYToIDs(movGridX, movGridY);
   var whatISThatDivClass = document.getElementById(wantToMoveXY).className;
-  var infoTile = document.getElementById("testinfo");
+  infoTile = document.getElementById("testinfo");
   //infoTile.textContent = wantToMoveXY;
 
-  if (checkElementIdIfClass(whatISThatDivClass, objectWall)) {
+  if (checkElementClass(whatISThatDivClass, objectWall)) {
     infoTile.textContent = "Can not move, its a wall";
 
     // do nothing if its a wall
-  } else if (checkElementIdIfClass(whatISThatDivClass, objectBox) || checkElementIdIfClass(whatISThatDivClass, objectBoxInGoal)) { // if its a box or goal-box infront of player, do this
+  } else if (checkElementClass(whatISThatDivClass, objectBox) || checkElementClass(whatISThatDivClass, objectBoxInGoal)) { // if its a box or goal-box infront of player, do this
     var frontOfBoxX = movGridX + moveX;
     var frontOfBoxY = movGridY + moveY;
     var formerBoxPos = wantToMoveXY;
@@ -154,10 +157,10 @@ function isMoveOk(moveX, moveY) {
     infoTile.textContent = "";
 
     // 1st nested IF
-    if (checkElementIdIfClass(whatIsInfrontOfBoxDivClass, objectWall)) { // is it a wall infront of box?
+    if (checkElementClass(whatIsInfrontOfBoxDivClass, objectWall)) { // is it a wall infront of box?
       infoTile.textContent = "Can not move, its a wall infront of the box";
 
-    } else if (checkElementIdIfClass(whatIsInfrontOfBoxDivClass, objectGoal)) { // is it a goal infront of box?
+    } else if (checkElementClass(whatIsInfrontOfBoxDivClass, objectGoal)) { // is it a goal infront of box?
 
       infoTile.textContent = "";
 
@@ -181,14 +184,14 @@ function isMoveOk(moveX, moveY) {
       playerPosX = movGridX;
       playerPosY = movGridY;
 
-    } else if (checkElementIdIfClass(whatIsInfrontOfBoxDivClass, objectBox)) { // is it a box infront of the box? Then GAME OVER!
+    } else if (checkElementClass(whatIsInfrontOfBoxDivClass, objectBox)) { // is it a box infront of the box? Then GAME OVER!
 
       infoTile.innerHTML = "GAME OVER! There is a box infront of your box.<br><button onClick='window.location.href=window.location.href'>Restart Game</button>";
       window.removeEventListener("keydown", arrowKeys); // Theese 2 removeEventListeners are not working. I did not figure out why
       window.removeEventListener("keyup", arrowKeys);
 
 
-    } else if (checkElementIdIfClass(whatIsInfrontOfBoxDivClass, objectSpace)) { // is it a space infront of player and box?
+    } else if (checkElementClass(whatIsInfrontOfBoxDivClass, objectSpace)) { // is it a space infront of player and box?
 
       infoTile.textContent = "";
 
@@ -215,7 +218,7 @@ function isMoveOk(moveX, moveY) {
 
     } // 1st nested if Endteg
 
-  } else if (checkElementIdIfClass(whatISThatDivClass, objectGoal)) { // if its a box-goal, do this
+  } else if (checkElementClass(whatISThatDivClass, objectGoal)) { // if its a box-goal, do this
 
   infoTile.textContent = "";
 
@@ -232,7 +235,7 @@ function isMoveOk(moveX, moveY) {
   playerPosX = movGridX;
   playerPosY = movGridY;
 
-} else if (checkElementIdIfClass(whatISThatDivClass, objectSpace)) { // if its a empty tile, move player there
+} else if (checkElementClass(whatISThatDivClass, objectSpace)) { // if its a empty tile, move player there
 
   infoTile.textContent = "";
 
@@ -260,128 +263,84 @@ function isMoveOk(moveX, moveY) {
 
 
 function testalite() {
-  var infoTile = document.getElementById("testamaptile");
+  var infoTile = document.getElementById("testinfo");
   var whatinfo = document.getElementById(currentPlayerPos);
   infoTile.textContent = whatinfo.textContent;
   infoTile.classList.remove("entity-player");
 }
 
 
+var   offset,
+      clock,
+      interval;
 
-// }, 0);
+var counterWatch = 1;
+
+ // checkes every second for a win
+setInterval(function () {
+  //document.getElementById("elapsedTime").innerHTML = counterWatch++ + " sekund(er)";
 
 
-/* update time every second 
-setInterval(function (){
-  var todayDate = new Date();
-    /*var format = "YYYY-MMM-DD DDD";
-    dateConvert(todayDate,format)*/
-/*
-  var weekday = new Array(7);
-  weekday[0] = "Sunday";
-  weekday[1] = "Monday";
-  weekday[2] = "Tuesday";
-  weekday[3] = "Wednesday";
-  weekday[4] = "Thursday";
-  weekday[5] = "Friday";
-  weekday[6] = "Saturday";
-  
-  var dayNameResult = weekday[todayDate.getDay()];
-  
-  var fulldatetime = dayNameResult + ", " + todayDate.toLocaleString();
-  document.getElementById('datetimeweek').innerHTML = fulldatetime;
+if (checkDivIDClassIfMmatch("x17y5", objectBoxInGoal)) { // && checkDivIDClassIfMmatch("x16y5", objectBoxInGoal) && checkDivIDClassIfMmatch("x16y4", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y6", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y5", objectBoxInGoal) && checkDivIDClassIfMmatch("x17y4", objectBoxInGoal)) {
+  infoTile.innerHTML = "Congratulations! Your got 6 boxes to the goal-storage! ;) <br><button onClick='window.location.href=window.location.href'>Play Again?</button>";
+  changeGoalBoxesColor("x16y6", "blue");
+  changeGoalBoxesColor("x16y5", "blue");
+  changeGoalBoxesColor("x16y4", "blue");
+  changeGoalBoxesColor("x17y6", "blue");
+  changeGoalBoxesColor("x17y5", "blue");
+  changeGoalBoxesColor("x17y4", "blue");
+
+  stop();
+
+}
   }, 1000);
 
-
-
-function checkIfLeapYear() {
-  var yesNoAnswer;
-  var isFirstJan;
-  var userinputyear = document.getElementById("inputyear").value;
-  var isItLeapYear = ((userinputyear % 4 == 0) && (userinputyear % 100 != 0)) || (userinputyear % 400 == 0);
-
-  if (isItLeapYear == true) {
-    yesNoAnswer = " IS a leapyear.";
+  function checkDivIDClassIfMmatch(divID, divClass) {
+    var checkWhat = document.getElementById(divID).className;
+    if (checkWhat == divClass) {
+    return true;
   } else {
-    yesNoAnswer = " is NOT leapyear.";
-  } 
+    return false;
+  }
+} // function endtag
 
-  var resultofyearcheck = "The year: " + userinputyear + yesNoAnswer;
-  document.getElementById('resultofcheck').innerHTML = " " + resultofyearcheck;
-
-
-  var firstJanYear = new Date(userinputyear, 0, 1);
-
-  if ( firstJanYear.getDay() === 0 ) {
-    isFirstJan = " IS a Sunday";
-  } else {
-    isFirstJan = " is NOT a Sunday";
+  function changeGoalBoxesColor(boxId, boxColor) {
+    document.getElementById(boxId).style.backgroundColor = boxColor;
   }
 
-var isFirstjanOnSunday = "1st January of " + userinputyear + isFirstJan;
-document.getElementById('resultOfFirstJanCheck').innerHTML = " " + isFirstjanOnSunday;
-}
 
+  function update() {
+    clock += delta();
+    render();
+  }
 
-function checkGuessedNr() {
+  function render() {
+    document.getElementById("elapsedTime").innerHTML = clock/1000 + " sekund(er)";  //counterWatch++ + " sekunder";//clock; ///1000; 
+  }
 
-  var theRndNr = Math.floor(Math.random() * 10) + 1;
-  var isGuessCorrect;
+  function delta() {
+    var now = Date.now(),
+        d = now - offset;
 
-  var userinputGuess = document.getElementById("inputNrGuess").value;
+    offset = now;
+    return d;
+  }
 
-  if (userinputGuess == theRndNr) {
-    isGuessCorrect = " is CORRECT, Good Job! ;)";
-  } else {
-    isGuessCorrect = " is wrong. The number " + theRndNr +  " did not match.";
-  } 
-
-  var resultofguesscheck = "Your guess: " + userinputGuess + isGuessCorrect;
-  document.getElementById('resultofguess').innerHTML = " " + resultofguesscheck;
-}
-
-
-function daysTilXmasNow() {
-
-var dateNow = new Date();
-var daysuntilXmas = new Date(dateNow.getFullYear(), 11, 24);
-
-if (dateNow.getMonth()==11 && dateNow.getDate()>24) 
-{
-  daysuntilXmas.setFullYear(daysuntilXmas.getFullYear()+1); 
-}  
-var one_day=1000*60*60*24;
-
-  daysleftxmas = (Math.ceil((daysuntilXmas.getTime()-dateNow.getTime())/(one_day))) + " days";
-  document.getElementById('showdaystoxmas').innerHTML = daysleftxmas;
-}
-
-
-
-function reverseUserInput() {
-  var userinputStr = document.getElementById("inputNrAndLetters").value;
-
-  var newReversedString = "";
-
-    for (var ind = userinputStr.length - 1; ind >= 0; ind--) {
-      newReversedString += userinputStr[ind];
+  function start() {
+    if (!interval) {
+      offset = Date.now();
+      interval = setInterval(update, 1000);
     }
+  }
 
-  document.getElementById('reversedResulOfInput').innerHTML = "Heres input in reverse order: " + newReversedString;
-}
-
-
-
-function textmanipulUserInput() {
-  var userinputStr = document.getElementById("inputUserText").value;
-
-  var newReversedString = "";
-
-    for (var ind = userinputStr.length - 1; ind >= 0; ind--) {
-      newReversedString += userinputStr[ind];
+  function stop() {
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
     }
+  }
 
-  document.getElementById('reversedResulOfInput').innerHTML = "Heres all combinations of the text: " + newReversedString;
-}
-
-*/
+  function reset() {
+    clock = 0;
+    render();
+  }

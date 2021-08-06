@@ -1,9 +1,82 @@
 #wrapper {
     position: relative;
     width: 1024px;
-    height: 1200px;
+    height: 480px;
     margin: 0 auto;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
+}
+
+#infoContainer {
+    float: left;
+    width: 454px;
+    height: 480px;
+    background-color: rgb(194, 194, 206);
+}
+
+#testinfo {
+    float: right;
+    font-weight: bold;
+}
+
+#mapWrap {
+    float: right;
+    width: 570px;
+    height: 480px;
+    background-color: rgb(106, 106, 236);
+}
+
+.block {
+    float: left;
+    width: 30px;
+    height: 30px;
+}
+
+.entity-block-empty {
+    background-color: gray;
+}
+
+.tile-wall {
+    background-color: black;
+}
+
+.tile-space {
+    background-color: white;
+}
+
+.tile-goal {
+    background-color: orange;
+}
+
+.tile-goal::after {
+    font-weight: bold;
+    content: "G";
+}
+
+.entity-player {
+    background-color: green;
+}
+
+.entity-player::after {
+    font-weight: bold;
+    content: "P";
+}
+
+.entity-block {
+    background-color: brown;
+}
+
+.entity-block::after {
+    font-weight: bold;
+    content: "B";
+}
+
+.entity-block-goal {
+    background-color: rgb(85, 156, 165);
+}
+
+.entity-block-goal::after {
+    font-weight: bold;
+    content: "BX";
 }
