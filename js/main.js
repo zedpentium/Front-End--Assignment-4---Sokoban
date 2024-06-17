@@ -1,5 +1,5 @@
 /*!
- * Eric R javascrip looks
+ * Eric R javascript looks
  */
 
 
